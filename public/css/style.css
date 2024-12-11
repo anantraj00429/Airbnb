@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.navbar {
+  height: 5rem;
+  background-color: white;
+  display: flex;
+}
+
+.container {
+  flex: 1;
+}
+
+.fa-compass {
+  color: #fe424d;
+  font-size: 2rem;
+}
+
+.nav-link {
+}
+
+/*Card */
+.card-img-top {
+  border-radius: 1rem;
+  width: 100% !important;
+  object-fit: cover;
+}
+
+.listing-link {
+  text-decoration: none;
+}
+
+.card-img-overlay {
+  opacity: 0;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
+}
+
+.card {
+  padding: 0 !important;
+  width: 20rem;
+}
+
+.listing-card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+
+.add-btn {
+  background-color: #fe424d !important;
+  color: black !important;
+  border: none !important;
+}
+
+.show-img {
+  height: 30vh;
+}
+
+.btns {
+  display: flex;
+  padding-top: 20px;
+}
+
+.edit-btn {
+  background-color: #fe424d !important;
+}
+
+.delete {
+  margin-left: 1rem;
+}
+
+/*map*/
+
+#map {
+  height: 300px;
+  width: 60vh;
+}
