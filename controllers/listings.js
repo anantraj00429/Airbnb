@@ -1,7 +1,7 @@
 const Listing = require("../models/listing");
-// const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-// const mapToken = process.env.MAP_TOKEN;
-// const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapToken = process.env.MAP_TOKEN;
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res, next) => {
   let allListings = await Listing.find();
@@ -13,18 +13,18 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createListing = async (req, res, next) => {
-  //   let response = await geocodingClient
-  //     .forwardGeocode({
-  //       query: `${req.body.listing.location},${req.body.listing.country}`,
-  //       limit: 1,
-  //     })
-  //     .send();
+  let response = await geocodingClient
+    .forwardGeocode({
+      query: `${req.body.listing.location},${req.body.listing.country}`,
+      limit: 1,
+    })
+    .send();
   let url = req.file.path;
   let filename = req.file.filename;
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, __filename };
-  //   newListing.geometry = response.body.features[0].geometry;
+  newListing.geometry = response.body.features[0].geometry;
   await newListing.save();
   req.flash("success", "New Listing Created!");
   res.redirect("/listings");
@@ -58,16 +58,16 @@ module.exports.renderEditForm = async (req, res, next) => {
 
 module.exports.updateListing = async (req, res, next) => {
   let { id } = req.params;
-  //   let response = await geocodingClient
-  //     .forwardGeocode({
-  //       query: `${req.body.listing.location},${req.body.listing.country}`,
-  //       limit: 1,
-  //     })
-  //     .send();
+  let response = await geocodingClient
+    .forwardGeocode({
+      query: `${req.body.listing.location},${req.body.listing.country}`,
+      limit: 1,
+    })
+    .send();
   let updateListing = req.body.listing;
   let listing = await Listing.findByIdAndUpdate(id, updateListing);
 
-  //   listing.geometry = response.body.features[0].geometry;
+  listing.geometry = response.body.features[0].geometry;
 
   if (typeof req.file != "undefined") {
     let url = req.file.path;
