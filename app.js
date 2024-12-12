@@ -152,7 +152,7 @@ const sessionOptions = {
   },
 };
 
-console.log("Session secret:", process.env.SECRET);
+// console.log("Session secret:", process.env.SECRET);
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -164,6 +164,12 @@ passport.use(
 );
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 // Routes
 app.use("/listings", listings);

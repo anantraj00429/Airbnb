@@ -1,7 +1,8 @@
 <% layout("/layouts/boilerplate")%>
 <script>
   const mapToken = "<%= process.env.MAP_TOKEN %>";
-  const listing = "<%- JSON.stringify(listing) %>";
+  const listing = <%- JSON.stringify(listing) %>
+  console.log(mapToken);
 </script>
 <div class="row">
   <div class="col-8 offset-2">
@@ -26,6 +27,7 @@
   </div>
   <br />
   <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
+  <!-- <% if(currUser && listing.owner._id.equals(currUser._id)) { %> -->
   <div class="btns">
     <a
       href="/listings/<%= listing._id %>/edit"
