@@ -1,43 +1,73 @@
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+/* Navbar */
 .navbar {
   height: 5rem;
   background-color: white;
   display: flex;
+  align-items: center; /* Vertically center the content */
+}
+
+/* Body and Container */
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  min-height: 100vh; /* Make the page fill the viewport height */
 }
 
 .container {
-  flex: 1;
+  flex: 1 !important; /* Push the footer to the bottom if content is short */
 }
 
-.fa-compass {
+/* Footer */
+footer {
+  background-color: #cadef3;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto !important; /* Push footer to the bottom */
+}
+
+footer .priv a {
+  text-decoration: none;
   color: #fe424d;
-  font-size: 2rem;
 }
 
-.nav-link {
+footer .priv a:hover {
+  text-decoration: underline;
 }
 
-/*Card */
+footer .social-icon a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+footer .social-icon img {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.2s; /* Smooth scaling on hover */
+}
+
+footer .social-icon img:hover {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+/* Cards */
 .card-img-top {
   border-radius: 1rem;
   width: 100% !important;
   object-fit: cover;
-}
-
-.listing-link {
-  text-decoration: none;
-}
-
-.card-img-overlay {
-  opacity: 0;
-}
-
-.card-img-overlay:hover {
-  opacity: 0.2;
-  background-color: white;
 }
 
 .card {
@@ -50,19 +80,21 @@
   margin-bottom: 2rem;
 }
 
+.card-img-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
+}
+
+/* Buttons */
 .add-btn {
   background-color: #fe424d !important;
   color: black !important;
   border: none !important;
-}
-
-.show-img {
-  height: 30vh;
-}
-
-.btns {
-  display: flex;
-  padding-top: 20px;
 }
 
 .edit-btn {
@@ -73,8 +105,7 @@
   margin-left: 1rem;
 }
 
-/*map*/
-
+/* Map */
 #map {
   height: 300px;
   width: 60vh;

@@ -1,4 +1,4 @@
-<% layout("/layouts/boilerplate") %>
+<%- include("../layouts/boilerplate") %>
 
 <h3>All Listings</h3>
 <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
@@ -6,7 +6,7 @@
   <a href="/listings/<%= listing._id %>" class="listing-link">
     <div class="card listing-card col">
       <img
-        src="<%= listing.image.url %>"
+        src="<%= listing.image ? listing.image.url : 'default-image.jpg' %>"
         style="height: 20rem"
         class="card-img-top"
         alt="<%= listing.title %>"
@@ -15,11 +15,48 @@
       <div class="card-body">
         <p class="card-text">
           <b><%= listing.title %> </b><br />
-          ₹<%= listing.price.toLocaleString("en-IN") %>/night
+          ₹<%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A'
+          %>/night
         </p>
       </div>
     </div>
   </a>
-
   <% } %>
 </div>
+
+<!-- <footer>
+  <div>
+    <div>
+      <div>&copy; 2023 Airbnb, Inc. &sdot; &nbsp;</div>
+      <div class="priv">
+        <a href="#">Privacy</a> &sdot; <a href="#">Terms</a> &sdot;
+        <a href="#">Help</a> &sdot;
+        <a href="#">Details</a>
+      </div>
+    </div>
+    <div>
+      <div class="eng-in">
+        <i class="fa-solid fa-globe me-1"></i>
+        <div class="main-light">English (IN)</div>
+      </div>
+      <div>₹ INR</div>
+      <div class="social-icon">
+        <a target="_blank" href="https://github.com">
+          <img src="/github.png" alt="GitHub" />
+        </a>
+        <a target="_blank" href="https://www.linkedin.com/in">
+          <img src="/linkedIn.png" alt="LinkedIn" />
+        </a>
+        <a target="_blank" href="https://www.instagram.com">
+          <img src="/instagram.png" alt="Instagram" />
+        </a>
+        <a target="_blank" href="https://www.facebook.com">
+          <img src="/facebook.png" alt="Facebook" style="padding: 1px" />
+        </a>
+        <a target="_blank" href="#">
+          <img src="/twiter.png" alt="Twitter" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer -->
